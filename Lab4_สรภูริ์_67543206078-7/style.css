@@ -1,0 +1,44 @@
+body {
+    background-color: #2C3930 ;
+    color: #DCD7C9;
+}
+header {
+    padding: 2rem;
+    background-color: #3F4F44;
+    color: #DCD7C9;
+    transition-duration: 1000ms;
+}
+
+header:hover {
+    font-size: large;
+    text-shadow: 0px 0px 40px white;
+    transition-duration: 1000ms;
+    color: #fffaed;
+}
+
+h2 {
+    color: #A27B5C;
+}
+
+section, section h2 {
+    transition-duration: 1000ms;
+}
+
+section:hover {
+    transition-duration: 1000ms;
+    margin-left: 5rem;
+}
+
+section:hover h2 {
+    transition-duration: 1000ms;
+    color: #ffc493;
+}
+
+section tr {
+    transition-duration: 1000ms;
+}
+
+section:hover tr {
+    transition-duration: 1000ms;
+    background-color: #131313;
+}

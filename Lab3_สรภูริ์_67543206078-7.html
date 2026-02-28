@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab3 - Form</title>
+    <style>
+        fieldset {
+            margin-top: 1rem;
+        }
+        p {
+            margin-right: 1rem;
+        }
+        .textInput {
+            margin-right: 3rem;
+            height: 1rem;
+        }
+        input, select {
+            margin-top: 1.5rem;
+        }
+        legend {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <fieldset>
+            <legend>Personal Information</legend>
+                FirstName:<input type="text" name="firstName" placeholder="FirstName" class="textInput" >
+                LastName:<input type="text" name="lastName" placeholder="LastName" class="textInput"><br>
+                Username: <input type="text" name="userName" placeholder="Username" class="textInput"><br>
+                Password: <input type="password" name="userName" placeholder="Password" class="textInput"><br>
+                Gender: 
+                <input type="radio" name="Gender" value="Male" >Male
+                <input type="radio" name="Gender" value="Female" style="margin-left: 2rem;" >Female <br>
+                
+                Province:
+                <select name="Province">
+                    <option value="CNX">ChiangeMai</option>
+                    <option value="LP">Lampang</option>
+                    <option value="LPN">Lamphun</option>
+                </select><br>
+
+                <input type="checkbox">Bike <br>
+                <input type="checkbox">Car <br>
+                <input type="checkbox">Motorcycle <br>
+
+                Picture : <input type="file" ><br>
+
+                <input type="submit">
+                <input type="reset">
+        </fieldset>
+    
+        <fieldset>
+            <legend>General Information</legend>
+            Suggest: <textarea name="" id=""></textarea><br>
+            <input type="image" src="https://cdn-icons-png.flaticon.com/512/7856/7856144.png" width="100" height="100">
+        </fieldset>
+    </main>
+</body>
+</html>
