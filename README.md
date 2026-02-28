@@ -17,6 +17,6 @@
 |LAMP||
 |CSS||
 |Database||
-|Session||
+|Cookies/Session||
 |Create File||
 
