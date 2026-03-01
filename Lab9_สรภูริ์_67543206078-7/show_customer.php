@@ -1,3 +1,4 @@
+<!-- <?php session_start(); ?> -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LAB8</title>
     <style>
-        table, #title {
+        table, #title, #account {
             border-collapse: collapse;
             margin-left:auto;
             margin-right:auto;
@@ -25,13 +26,18 @@
             vertical-align: middle;
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body style="padding-top:2%" >
+<body>
     <table>
+        <div id="account" style="display:flex; justify-content:space-between; margin-bottom:1%;" >
+            <label><strong>ชื่อผู้ใช้: <?php echo $_SESSION['username']; ?></strong></label>
+            <a href="logout.php" style="color:red;" onclick="return confirm('คุณต้องการออกจากระบบหรือไม่?')"><strong>Log out</strong></a>
+        </div>
         <div id='title' style="margin-bottom:1%; display:flex; flex-direction:row; justify-content:space-between;">
             <div></div>
             <a href="add_customer.php" style="color:blue;">ข้อมูลลูกค้า</a>
-            <a href="add_customer.php" style="color:red;">เพิ่มข้อมูลลูกค้า</a>
+            <a href="add_customer.php" style="color:red;"><i class="fa fa-user-plus" style="color:green" ></i>เพิ่มข้อมูลลูกค้า</a>
         </div>
         <thead>
             <tr>
@@ -142,8 +148,8 @@
                                 <td><?php echo $rows['Customer_Name'] . " " . $rows['Customer_Lastname']; ?></td>
                                 <td><?php echo $rows['Province']; ?></td>
                                 <td><?php echo $rows['Telephone']; ?></td>
-                                <td><a href="edit_customer.php?Customer_id=<?php echo $rows['Customer_id']; ?>">แก้ไข</a></td>
-                                <td><a href="show_customer.php?Customer_id=<?php echo $rows['Customer_id']; ?>" onclick="return confirm('คุณต้องการลบข้อมูลนี้หรือไม่?')">ลบ</a></td>
+                                <td style="text-align:center"><a href="edit_customer.php?Customer_id=<?php echo $rows['Customer_id']; ?>" ><i class="fa fa-pencil" style="color:blue"></i></a></td>
+                                <td style="text-align:center"><a href="show_customer.php?Customer_id=<?php echo $rows['Customer_id']; ?>" onclick="return confirm('คุณต้องการลบข้อมูลนี้หรือไม่?')"><i class="fa fa-trash" style="color:red"></i></a></td>
                             </tr>
                             <?php
                         }
