@@ -10,7 +10,7 @@
         text-align: right;
         height: 50px;
     }
-    input, textarea {
+    input, textarea, select {
         margin-left: 10%;
     }
     button {
@@ -20,9 +20,10 @@
 </style>
 <body>
     <?php
+        include 'connectDB.php' ;
         $id = $_GET['Customer_id'] ;
         $row ;
-        $connect = new mysqli("localhost", "admin", "114477", "web_program");
+        $connect = connectDB();
         if(mysqli_connect_errno()){
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
             exit();
@@ -68,7 +69,13 @@
                 </tr>
                 <tr>
                     <td class="title" >จังหวัด:</td>
-                    <td><input type="text" name="Customer_Province" id="new_province" value="<?php echo $user['Province']; ?>"></td>
+                    <td>
+                        <select name="Customer_Province" id="new_province">
+                            <option value="">เลือกจังหวัด</option>
+                            <option value="เชียงใหม่" <?php echo ($user['Province'] == 'เชียงใหม่') ? 'selected' : ''; ?>>เชียงใหม่</option>
+                            <option value="ลำพูน" <?php echo ($user['Province'] == 'ลำพูน') ? 'selected' : ''; ?>>ลำพูน</option>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <td class="title" >รหัสไปรษณีย์:</td>

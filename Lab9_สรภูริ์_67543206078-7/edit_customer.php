@@ -20,14 +20,10 @@
 </style>
 <body>
     <?php
+        include "connectDB.php" ;
         $id = $_GET['Customer_id'] ;
         $row ;
-        $connect = new mysqli("localhost", "admin", "114477", "web_program");
-        if(mysqli_connect_errno()){
-            echo "Failed to connect to MySQL: " . mysqli_connect_error();
-            exit();
-        }
-        
+        $connect = connectDB() ;
         if( $result = mysqli_query($connect, "SELECT * FROM customer WHERE Customer_id = " . $id) ) {
             $user = mysqli_fetch_array($result);
         }

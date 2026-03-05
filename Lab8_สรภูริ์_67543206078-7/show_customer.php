@@ -45,6 +45,7 @@
         </thead>
         <tbody>
             <?php
+                include 'connectDB.php' ;
                 if ($_SERVER['REQUEST_METHOD'] == "POST" && $_POST['action'] == 'edit' ) {
                     $id = $_POST[ 'Customer_id' ] ;
                     $name = $_POST['Customer_Name'];
@@ -124,14 +125,6 @@
                 else {
                     $_connected = connectDB();
                     fetchData( $_connected ) ;
-                }
-                function connectDB(){
-                    $connect = new mysqli("localhost", "admin", "114477", "web_program");
-                    if(mysqli_connect_errno()){
-                        echo "Failed to connect to MySQL: " . mysqli_connect_error();
-                        exit();
-                    } 
-                    return $connect ;
                 }
                 function fetchData( $connect ){
                     if( $result = mysqli_query($connect, "SELECT * FROM customer" ) ) {

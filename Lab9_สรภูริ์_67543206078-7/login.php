@@ -1,13 +1,10 @@
 <?php
     session_start() ;
+    include "connectDB.php" ;
     if ($_SERVER['REQUEST_METHOD'] == "POST" ) {
         $username = $_POST['username'] ;
         $password = $_POST['password'] ;
-        $_connect = new mysqli("localhost", "admin", "114477", "web_program");
-        if(mysqli_connect_errno()){
-            echo "Failed to connect to MySQL: " . mysqli_connect_error();
-            exit();
-        } 
+        $_connect = connectDB();
         $_sql = "SELECT * FROM customer WHERE username = '$username' AND password = '$password';" ;
         $result = mysqli_query( $_connect, $_sql ) ;
         if ( mysqli_num_rows( $result ) > 0 ) {
