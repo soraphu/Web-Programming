@@ -28,7 +28,7 @@
             <table>
                 <tr>
                     <td class="title" >ชื่อ:</td>
-                    <td><input type="text" name="Customer_Name" value="<?php echo $user['Customer_Name']; ?>" id="new_name"></td>
+                    <td><input type="text" name="Customer_Name" id="new_name" value="<?php echo $user['Customer_Name']; ?>"></td>
                 </tr>
                 <tr>
                     <td class="title" >นามสกุล:</td>
@@ -77,15 +77,15 @@
                 <table>
                     <tr>
                         <td class="title" >Username:</td>
-                        <td><input type="text" name="Customer_username" id=""></td>
+                        <td><input type="text" name="Customer_username" id="username"></td>
                     </tr>
                     <tr>
                         <td class="title" >Password:</td>
-                        <td><input type="password" name="Customer_password" id=""></td>
+                        <td><input type="password" name="Customer_password" id="user_password"></td>
                     </tr>
                     <tr>
                         <td class="title" >Confirm Password:</td>
-                        <td><input type="password" name="" id=""></td>
+                        <td><input type="password" name="Customer_confirm_password" id="user_confirm_password"></td>
                     </tr>
                 </table>
             </fieldset>
@@ -95,5 +95,33 @@
             <button type="button" name="cancel" value="cancel" onclick="window.location.href='show_customer.php';">ยกเลิก</button>
         </div>
     </form>
+    <script>
+        const form = document.querySelector('form') ;
+        form.addEventListener('submit', (e) => {
+            const name = document.getElementById('new_name').value.trim();
+            const lastname = document.getElementById('new_lastname').value.trim();
+            const gender = document.querySelector('input[name="Customer_Gender"]:checked');
+            const birthdate = document.getElementById('new_birthdate').value.trim();
+            const address = document.getElementById('new_address').value.trim();
+            const province = document.getElementById('new_province').value.trim();
+            const postalcode = document.getElementById('new_postalcode').value.trim();
+            const phone = document.getElementById('new_phone').value.trim();
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('user_password').value.trim();
+            const confirmPassword = document.getElementById('user_confirm_password').value.trim();
+
+            if (!name || !lastname || !gender || !birthdate || !address || !province || !postalcode || !phone || !username || !password || !confirmPassword) {
+                alert('กรุณากรอกข้อมูลให้ครบถ้วน');
+                e.preventDefault();
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                alert('รหัสผ่านไม่ตรงกัน');
+                e.preventDefault();
+                return;
+            }
+        });
+    </script>
 </body>
 </html>
