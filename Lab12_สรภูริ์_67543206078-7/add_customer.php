@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LAB11</title>
+    <title>LAB12</title>
 </head>
 <style>
     .title {
@@ -34,11 +34,11 @@
             <table>
                 <tr>
                     <td class="title">ชื่อ:</td>
-                    <td><input type="text" name="Customer_Name" id="new_name" value="<?php echo $user['Customer_Name']; ?>"></td>
+                    <td><input type="text" name="Customer_Name" id="new_name" value="<?php echo $user['Customer_Name']; ?>" onblur="onBlurValidation( this, 3 )"></td>
                 </tr>
                 <tr>
                     <td class="title">นามสกุล:</td>
-                    <td><input type="text" name="Customer_Lastname" id="new_lastname" value="<?php echo $user['Customer_Lastname']; ?>"></td>
+                    <td><input type="text" name="Customer_Lastname" id="new_lastname" value="<?php echo $user['Customer_Lastname']; ?>" onblur="onBlurValidation( this, 3 )"></td>
                 </tr>
                 <tr>
                     <td class="title">เพศ</td>
@@ -53,7 +53,7 @@
                 </tr>
                 <tr>
                     <td class="title">ที่อยู่:</td>
-                    <td><input type="text" name="Customer_Address" id="new_address" value="<?php echo $user['Address']; ?>"></td>
+                    <td><input type="text" name="Customer_Address" id="new_address" value="<?php echo $user['Address']; ?>" onblur="onBlurValidation( this, 3 )"></td>
                 </tr>
                 <tr>
                     <td class="title">จังหวัด:</td>
@@ -67,11 +67,11 @@
                 </tr>
                 <tr>
                     <td class="title">รหัสไปรษณีย์:</td>
-                    <td><input type="text" name="Customer_PostalCode" id="new_postalcode" value="<?php echo $user['Zipcode']; ?>"></td>
+                    <td><input type="text" name="Customer_PostalCode" id="new_postalcode" value="<?php echo $user['Zipcode']; ?>" onblur="onBlurValidation( this, 5 )" onkeyup="onKeyUpValidation(this)"></td>
                 </tr>
                 <tr>
                     <td class="title">โทรศัพท์:</td>
-                    <td><input type="text" name="Customer_Phone" id="new_phone" value="<?php echo $user['Telephone']; ?>"></td>
+                    <td><input type="text" name="Customer_Phone" id="new_phone" value="<?php echo $user['Telephone']; ?>" onblur="onBlurValidation( this, 10 )" onkeyup="onKeyUpValidation(this)"></td>
                 </tr>
                 <tr>
                     <td class="title">รายละเอียดอื่นๆ:</td>
@@ -83,11 +83,11 @@
                 <table>
                     <tr>
                         <td class="title">Username:</td>
-                        <td><input type="text" name="Customer_username" id="username"></td>
+                        <td><input type="text" name="Customer_username" id="username" onblur="onBlurValidation( this, 5 )"></td>
                     </tr>
                     <tr>
                         <td class="title">Password:</td>
-                        <td><input type="password" name="Customer_password" id="user_password"></td>
+                        <td><input type="password" name="Customer_password" id="user_password" onblur="onBlurValidation( this, 8 )"></td>
                     </tr>
                     <tr>
                         <td class="title">Confirm Password:</td>
@@ -103,18 +103,19 @@
     </form>
     <script>
         const form = document.querySelector('form');
+        const name = document.getElementById('new_name').value.trim();
+        const lastname = document.getElementById('new_lastname').value.trim();
+        const gender = document.querySelector('input[name="Customer_Gender"]:checked');
+        const birthdate = document.getElementById('new_birthdate').value.trim();
+        const address = document.getElementById('new_address').value.trim();
+        const province = document.getElementById('new_province').value.trim();
+        const postalcode = document.getElementById('new_postalcode').value.trim();
+        const phone = document.getElementById('new_phone').value.trim();
+        const username = document.getElementById('username').value.trim();
+        const password = document.getElementById('user_password').value.trim();
+        const confirmPassword = document.getElementById('user_confirm_password').value.trim();
+
         form.addEventListener('submit', (e) => {
-            const name = document.getElementById('new_name').value.trim();
-            const lastname = document.getElementById('new_lastname').value.trim();
-            const gender = document.querySelector('input[name="Customer_Gender"]:checked');
-            const birthdate = document.getElementById('new_birthdate').value.trim();
-            const address = document.getElementById('new_address').value.trim();
-            const province = document.getElementById('new_province').value.trim();
-            const postalcode = document.getElementById('new_postalcode').value.trim();
-            const phone = document.getElementById('new_phone').value.trim();
-            const username = document.getElementById('username').value.trim();
-            const password = document.getElementById('user_password').value.trim();
-            const confirmPassword = document.getElementById('user_confirm_password').value.trim();
 
             if (!name || !lastname || !gender || !birthdate || !address || !province || !postalcode || !phone || !username || !password || !confirmPassword) {
                 alert('กรุณากรอกข้อมูลให้ครบถ้วน');
@@ -127,7 +128,23 @@
                 e.preventDefault();
                 return;
             }
-        });
+        }); //form
+
+        function onBlurValidation(input, min) {
+            const getLength = input.value.length;
+            if (getLength < min && getLength != 0) {
+                alert(`กรุณาใส่ข้อมูลไม่ต่ำกว่า ${min} ตัว`)
+            }
+        } //on blur validate
+
+        function onKeyUpValidation(input) {
+            const getLength = input.value.length;
+            const reg = /^\d+$/;
+            if (!reg.test(input.value) && getLength != 0) {
+                alert("กรุณาใส่ข้อมูลเป็นตัวเลขเท่านั้น");
+                input.value = '';
+            }
+        } // on keyup validate
     </script>
 </body>
 
